@@ -7,16 +7,10 @@ public class Empleado {
     private String apellido;
     private int dni;
     private String nacionalidad;
+    private int dpto_id;
 
 
     public Empleado() {
-    }
-
-    public Empleado(String nombre, String apellido, int dni, String nacionalidad) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
-        this.nacionalidad = nacionalidad;
     }
 
     public Empleado(int id_empleados, String nombre, String apellido, int dni, String nacionalidad) {
@@ -66,6 +60,10 @@ public class Empleado {
     public void setNacionalidad(String nacionalidad) {
         this.nacionalidad = nacionalidad;
     }
+
+    public int getDpto_id() { return dpto_id;}
+
+    public void setDpto_id(int dpto_id) { this.dpto_id = dpto_id; }
 
     @Override
     public String toString() {

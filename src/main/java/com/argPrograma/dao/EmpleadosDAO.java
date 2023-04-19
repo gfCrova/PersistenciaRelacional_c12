@@ -17,13 +17,14 @@ public class EmpleadosDAO {
 
         try (con) {
             final PreparedStatement statement = con.prepareStatement("INSERT INTO empleados"
-                    + "(nombre, apellido, dni, nacionalidad) "
-                    + "VALUES (?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
+                    + "(nombre, apellido, dni, nacionalidad, dpto_id) "
+                    + "VALUES (?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
             try (statement) {
                 statement.setString(1, empleado.getNombre());
                 statement.setString(2, empleado.getApellido());
                 statement.setInt(3, empleado.getDni());
                 statement.setString(4, empleado.getNacionalidad());
+                statement.setInt(5, empleado.getDpto_id());
 
                 statement.execute();
                 final ResultSet rs = statement.getGeneratedKeys();
