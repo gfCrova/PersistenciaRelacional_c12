@@ -5,7 +5,7 @@ import com.argPrograma.dao.DepartamentosDAO;
 
 import java.util.Scanner;
 
-public class DeptoService {
+public class DepartamentosService {
     Scanner sc;
     Departamento departamento;
     DepartamentosDAO deptoDao = new DepartamentosDAO();
@@ -31,6 +31,7 @@ public class DeptoService {
                     menuDepartamentos();
                 }
                 case 2: {
+                    System.out.println(deptoDao.mostrarConEmpleados());
                     menuDepartamentos();
                 }
                 case 3: {
