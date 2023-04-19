@@ -1,6 +1,7 @@
 package com.argPrograma.Services;
 
 import com.argPrograma.Entities.Departamento;
+import com.argPrograma.Entities.Empleado;
 import com.argPrograma.dao.DepartamentosDAO;
 
 import java.util.Scanner;
@@ -53,11 +54,11 @@ public class DepartamentosService {
         try {
             System.out.println("Ingrese el 'ID' del Departamento que desea Eliminar: ");
             int id = Integer.parseInt(sc.nextLine());
-            for (int i = 0; i < deptoDao.listarDepto().size(); i++) {
-                if (id == deptoDao.listarDepto().get(i).getId_dpto()){
+
+            for (Departamento em : deptoDao.listarDepto()) {
+                if (id == em.getId_dpto()){
                     deptoDao.eliminarDepto(id);
-                } else {
-                    throw new RuntimeException("Error: No se puede eliminar un id que no existe.");
+                    break;
                 }
             }
             menuDepartamentos();

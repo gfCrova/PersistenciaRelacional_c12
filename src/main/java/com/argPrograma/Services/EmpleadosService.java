@@ -22,8 +22,14 @@ public class EmpleadosService {
             empleado.setDni(Integer.parseInt(sc.nextLine()));
             System.out.println("Ingrese la nacionalidad: ");
             empleado.setNacionalidad(sc.nextLine());
+            System.out.println("Especifique el Departamento del nuevo empleado: ");
+            System.out.println("1 - Logística");
+            System.out.println("2 - Sistemas");
+            System.out.println("3 - Compras");
+            empleado.setDpto_id(Integer.parseInt(sc.nextLine()));
 
-            if (!Objects.equals(empleado.getNombre(), "") && !Objects.equals(empleado.getApellido(), "") && !Objects.equals(empleado.getDni(), 0) && !Objects.equals(empleado.getNacionalidad(), "")) {
+            if (!Objects.equals(empleado.getNombre(), "") && !Objects.equals(empleado.getApellido(), "") && !Objects.equals(empleado.getDni(), 0) && !Objects.equals(empleado.getNacionalidad(), "") && !Objects.equals(empleado.getDpto_id(), 0)) {
+                dao.registrarEmpleado(empleado);
                 System.out.println("Persona agregada con éxito!! \n");
             } else {
                 throw new NullPointerException("No se pueden agregar campos vacíos ");
@@ -42,11 +48,10 @@ public class EmpleadosService {
             System.out.println("Ingrese su Nueva nacionalidad: ");
             String nac = sc.nextLine();
 
-            for (int i = 0; i < dao.listarEmpleado().size(); i++) {
-                if (id == dao.listarEmpleado().get(i).getId_empleados()){
+            for (Empleado em : dao.listarEmpleado()) {
+                if(id == em.getId_empleados()) {
                     dao.modificarNac(nac, id);
-                } else {
-                throw new RuntimeException("Error: El id no existe.");
+                    break;
                 }
             }
             menuEmpleados();
@@ -60,14 +65,13 @@ public class EmpleadosService {
         try {
             System.out.println("Ingrese el 'ID' del empleado que quiere Eliminar: ");
             int id = Integer.parseInt(sc.nextLine());
-            for (int i = 0; i < dao.listarEmpleado().size(); i++) {
-                if (id == dao.listarEmpleado().get(i).getId_empleados()){
+
+            for (Empleado em : dao.listarEmpleado()) {
+                if (id == em.getId_empleados()){
                     dao.eliminar(id);
-                } else {
-                    throw new RuntimeException("Error: No se puede eliminar un id que no existe.");
+                    break;
                 }
             }
-
             menuEmpleados();
         }catch (NullPointerException e) {
             System.out.println("No se pueden agregar campos vacíos " + e.getMessage());
@@ -92,7 +96,6 @@ public class EmpleadosService {
             switch (opcion) {
                 case 1: {
                     ingresarEmpleado(empleado1);
-                    dao.registrarEmpleado(empleado1);
                     menuEmpleados();
                 }
                 case 2: {
