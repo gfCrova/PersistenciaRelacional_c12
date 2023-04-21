@@ -61,9 +61,9 @@ public class DepartamentosDAO {
 
                 try (resultSet) {
                     while (resultSet.next()) {
-                        Integer dptoId = resultSet.getInt("d.id_departamento");
+                        int dptoId = resultSet.getInt("d.id_departamento");
                         String dptoNombre = resultSet.getString("d.nombre");
-                        Integer dptoPresupuesto = resultSet.getInt("d.presupuesto");
+                        int dptoPresupuesto = resultSet.getInt("d.presupuesto");
 
                         var depto = resultado
                                 .stream()

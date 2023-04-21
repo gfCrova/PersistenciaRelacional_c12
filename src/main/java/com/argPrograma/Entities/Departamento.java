@@ -54,7 +54,7 @@ public class Departamento {
     @Override
     public String toString() {
         return  id_dpto + " Departamento de " + '\'' + nombre + '\'' + ": Presupuesto = " + presupuesto + "\n" +
-                "\t Lista de empleados: \n" +
-                "\t" + listEmpleados + "\n";
+                "\t Lista de empleados: \n" + 
+               listEmpleados + "\n\n";
     }
 }
