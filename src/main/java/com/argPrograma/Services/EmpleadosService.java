@@ -57,6 +57,9 @@ public class EmpleadosService {
             menuEmpleados();
         } catch (NullPointerException e) {
             System.out.println("No se pueden agregar campos vacíos " + e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("Solo se permiten caracteres numéricos. " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -75,48 +78,60 @@ public class EmpleadosService {
             menuEmpleados();
         }catch (NullPointerException e) {
             System.out.println("No se pueden agregar campos vacíos " + e.getMessage());
+        }catch (NumberFormatException e) {
+            System.out.println("Solo se permiten caracteres numéricos. " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
     public void menuEmpleados() {
-        sc = new Scanner(System.in);
-        System.out.println("\nMenú Empleados\n");
-        System.out.println("Elige una opción:");
-        System.out.println("1 - Agregar nuevo empleado");
-        System.out.println("2 - Listar todos los empleados");
-        System.out.println("3 - Modificar un empleado");
-        System.out.println("4 - Eliminar un empleado");
-        System.out.println("5 - Volver al Menú Principal");
-        System.out.println("6 - Salir");
-        int opcion = Integer.parseInt(sc.nextLine());
+        try {
+            sc = new Scanner(System.in);
+            System.out.println("\nMenú Empleados\n");
+            System.out.println("Elige una opción:");
+            System.out.println("1 - Agregar nuevo empleado");
+            System.out.println("2 - Listar todos los empleados");
+            System.out.println("3 - Modificar un empleado");
+            System.out.println("4 - Eliminar un empleado");
+            System.out.println("5 - Volver al Menú Principal");
+            System.out.println("6 - Salir");
+            int opcion = Integer.parseInt(sc.nextLine());
 
-        if (opcion <= 0 || opcion > 6){
-            throw new RuntimeException("Error: Opción Inválida. Por favor elegir entre las opciones disponibles.");
-        } else {
-            switch (opcion) {
-                case 1: {
-                    ingresarEmpleado(empleado1);
-                    menuEmpleados();
-                }
-                case 2: {
-                    System.out.println(dao.listarEmpleado());
-                    menuEmpleados();
-                }
-                case 3: {
-                    modificarEmpleado();
-                    menuEmpleados();
-                }
-                case 4: {
-                    eliminarEmpleado();
-                    menuEmpleados();
-                }
-                case 5: {
-                    menu.menuPrincipal();
-                }
-                case 6: {
-                    System.out.println("Programa Finalizado!");
+            if (opcion <= 0 || opcion > 6) {
+                throw new RuntimeException("Error: Opción Inválida. Por favor elegir entre las opciones disponibles.");
+            } else {
+                switch (opcion) {
+                    case 1: {
+                        ingresarEmpleado(empleado1);
+                        menuEmpleados();
+                    }
+                    case 2: {
+                        System.out.println(dao.listarEmpleado());
+                        menuEmpleados();
+                    }
+                    case 3: {
+                        modificarEmpleado();
+                        menuEmpleados();
+                    }
+                    case 4: {
+                        eliminarEmpleado();
+                        menuEmpleados();
+                    }
+                    case 5: {
+                        menu.menuPrincipal();
+                    }
+                    case 6: {
+                        System.out.println("Programa Finalizado!");
+                        Runtime.getRuntime().exit(1);
+                    }
                 }
             }
+        }catch (NumberFormatException e) {
+            System.out.println("Solo se permiten caracteres numéricos. " + e.getMessage());
+            e.printStackTrace();
+        }catch (NullPointerException e) {
+            System.out.println("No se puede agregar un campo vacío. " + e.getMessage());
+            e.printStackTrace();
         }
     }
 }

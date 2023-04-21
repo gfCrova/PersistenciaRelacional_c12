@@ -1,17 +1,17 @@
-package com.argPrograma;
+package com.argPrograma.Services;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class Load {
+public class ConfigService {
 
     private String driver;
     private String url;
     private String username;
     private String password;
 
-    public Load() {
+    public ConfigService() {
     }
 
     public String getDriver() {
