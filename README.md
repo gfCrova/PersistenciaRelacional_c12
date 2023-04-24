@@ -17,4 +17,3 @@ etc.)
 7. Conocer los empleados que trabajan en el departamento de “logística” (puede ser
 cualquiera de los que agreguen).
 8. Mostrar todos los departamentos ordenados alfabéticamente.
-1
